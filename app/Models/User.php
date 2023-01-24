@@ -41,4 +41,13 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * HasMany with Pastes
+     *
+     */
+    public function pastes()
+    {
+      return $this->hasMany(Paste::class);
+    }
 }
