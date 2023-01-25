@@ -21,5 +21,19 @@
 }
 
 .profil-pastes {
-    margin-right: 100px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.profil-pastes th {
+    width: 200px;
+}
+
+.profil-pagination {
+    margin-top: 30px;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
 }

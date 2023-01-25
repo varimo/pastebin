@@ -12,12 +12,15 @@
         <!-- Fonts -->
         <link rel="dns-prefetch" href="//fonts.gstatic.com">
         <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/default.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
 
         <!-- Scripts -->
         @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     </head>
     <body class="">
-        <div class="container d-flex justify-content-center p-2">
+        <div class="container d-flex justify-content-around p-2">
+            <div><a class="nav-link p-1" href="{{ route('index') }}">Pastebin</a></div>
             @if (Route::has('login'))
                 <div class="d-flex">
                     @auth

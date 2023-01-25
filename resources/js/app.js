@@ -37,3 +37,13 @@ app.component('example-component', ExampleComponent);
  */
 
 app.mount('#app');
+
+let checkBox = document.querySelector('#create_guest');
+let privateOption = document.querySelector('#private-option');
+let selectAccess = document.querySelector('#access');
+checkBox.addEventListener('change', () => {
+    privateOption.disabled = !privateOption.disabled;
+    if (privateOption.disabled && selectAccess.value == 'private') {
+        selectAccess.value='public';
+    }
+})

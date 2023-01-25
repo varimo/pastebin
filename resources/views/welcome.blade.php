@@ -5,7 +5,7 @@
     <form class="w-100 form-create-baste" action="{{ route('create_paste') }}" method="POST">
         @csrf
         <div class="d-flex flex-column">
-            <span class="mb-4">New Paste</span>
+            <span class="mb-4 fw-bold fs-5">New Paste</span>
             <textarea name="text" id="text" cols="30" rows="20"></textarea>
             @error('text')
                 <span class="invalid-feedback" role="alert">
@@ -59,7 +59,7 @@
                 <select name="access" id="access">
                     <option value="public">Public</option>
                     <option value="unlisted">Unlisted</option>
-                    <option value="private"
+                    <option id="private-option" value="private"
                     @auth
                     @else
                         disabled
@@ -83,44 +83,11 @@
             @enderror
             <button type="submit" class="btn btn-primary mt-2 mb-2 ml-3" style="width: 197px; margin-left: 203px; ">Create New Paste</button>
             <div class="mt-2 mb-2" style="margin-left: 203px; ">
-                <input type="checkbox" id="create_guest" name="scalcreate_guestes" class="ml-6">
+                <input type="checkbox" id="create_guest" name="create_guest" class="ml-6">
                 <label for="create_guest">Paste as a guest </label>
             </div>
         </div>
     </form>
-    <div class="">
-        @auth
-            <div class="sidebar-block">
-                <span class="fw-bold fs-5">My Pastes</span>
-                @foreach ($private_paste as $paste)
-                    <div>
-                        <a href="{{ $paste->url }}" class="text-decoration-none">{{ $paste->title }}</a>
-                        <div class="d-flex">
-                            <span>{{ $paste->access }} |</span>
-                            @if ($paste->language != null)
-                                <span>{{ $paste->language }} |</span>
-                            @endif
-                            <span>{{ Illuminate\Support\Carbon::parse( $paste->created_at )->diff( Illuminate\Support\Carbon::now())->format('%i min ago') }}</span>
-                        </div>
-                    </div>
-                @endforeach
-            </div>
-        @endauth
-        <div class="sidebar-block">
-            <span class="fw-bold fs-5">Public Pastes</span>
-            @foreach ($public_paste as $paste)
-                <div>
-                    <a href="{{ $paste->url }}" class="text-decoration-none">{{ $paste->title }}</a>
-                    <div class="d-flex">
-                        <span>{{ $paste->access }} |</span>
-                        @if ($paste->language != null)
-                            <span>{{ $paste->language }} |</span>
-                        @endif
-                        <span>{{ Illuminate\Support\Carbon::parse( $paste->created_at )->diff( Illuminate\Support\Carbon::now())->format('%i min ago') }}</span>
-                    </div>
-                </div>
-            @endforeach
-        </div>
-    </div>
+    @include('layouts.sidebar')
 </div>
 @endsection
